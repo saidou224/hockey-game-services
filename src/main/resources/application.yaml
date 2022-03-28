@@ -1,0 +1,21 @@
+server:
+  servlet:
+    context-path: /api
+  port: 8000
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:hokeyGameDb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+
+## http://localhost:8000/api/swagger-ui/index.html or http://localhost:8080/api/docs
+springdoc:
+  api-docs:
+    path: /docs

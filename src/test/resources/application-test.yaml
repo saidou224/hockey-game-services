@@ -1,0 +1,9 @@
+server:
+  servlet:
+    context-path: /api
+  port: 8000
+
+## http://localhost:8000/api/swagger-ui/index.html or http://localhost:8080/api/docs
+springdoc:
+  api-docs:
+    path: /docs
