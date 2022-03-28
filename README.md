@@ -1,13 +1,16 @@
 # hockey-game-api
-Gestion d'une équipe de Hokey
+Hockey team management api
 
-# Technos 
+# Technologies 
   * Java 17
   * Spring Boot 2.6.3 
-  * H2 (base de données en mémoire)
+  * Maven 3.8.1
+  * H2 (in memory database)
 
 # Run
-  * lancer com.sba.hockeyGame.HockeyGameApplication
+  * First execute the command "mvn clean install" to load all dependencies
+  * then run the application's main class "com.sba.hockeyGame.HockeyGameApplication"
 
-# les endpoints présents dans l'API: 
+# API documentation: 
   * http://localhost:8000/api/swagger-ui/index.html
+  * http://localhost:8000/api/docs
