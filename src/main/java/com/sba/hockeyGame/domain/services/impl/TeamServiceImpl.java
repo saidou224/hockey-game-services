@@ -9,20 +9,21 @@ import com.sba.hockeyGame.domain.team.TeamMapper;
 import com.sba.hockeyGame.domain.team.TeamQuery;
 import java.util.List;
 import java.util.NoSuchElementException;
-
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
+@Log4j2
 public class TeamServiceImpl implements TeamService {
 
   private final TeamCommand teamCommand;
   private final TeamMapper teamMapper;
   private final TeamQuery teamQuery;
 
+  @Transactional
   @Override
   public void addTeam(TeamToAddDto teamDto) {
     teamCommand.save(teamMapper.map(teamDto));
@@ -31,11 +32,13 @@ public class TeamServiceImpl implements TeamService {
 
   @Override
   public List<Team> getTeams(int pageNumber, int pageSize) {
+    log.info("retrieve list of team");
     return teamQuery.retrieveTeams(pageNumber, pageSize).getContent();
   }
 
   @Override
   public Team findTeamByYear(Long year) {
+    log.info("retrieve a team for year {}", year);
     return teamQuery.findTeamByYear(year)
             .orElseThrow(() -> new NoSuchElementException(
                     "A team with year " + year + " not found in database"));
@@ -43,6 +46,7 @@ public class TeamServiceImpl implements TeamService {
 
   @Override
   public List<TeamResponseDto> getTeamsByYear(Long year, int pageNumber, int pageSize) {
+    log.info("retrieve list of team");
     return teamQuery.retrieveTeamsByYear(year, pageNumber, pageSize).getContent()
             .stream()
             .map(teamMapper::map)
